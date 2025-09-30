@@ -539,3 +539,41 @@ fn frame_from_obj(
     }
     None
 }
+
+
+// -------------------------------
+// SECTION 5: count_frames (fast pass, capped at 100k frames)
+// -------------------------------
+#[wasm_bindgen]
+pub fn count_frames(blf_bytes: &[u8]) -> Result<JsValue, JsValue> {
+    let cursor = Cursor::new(blf_bytes);
+    let blf = BlfFile::from_reader(cursor)
+        .map_err(|(e, _)| JsValue::from_str(&format!("Failed to parse BLF: {:?}", e)))?;
+
+    let mut count = 0usize;
+    let mut first_ts = 0.0;
+    let mut last_ts = 0.0;
+    let mut capped = false;
+
+    for obj in blf {
+        if let ObjectTypes::CanMessage86(cf) = obj.data {
+            if count == 0 {
+                first_ts = cf.header.timestamp_ns as f64 / 1e9;
+            }
+            last_ts = cf.header.timestamp_ns as f64 / 1e9;
+            count += 1;
+            if count >= 100_000 {
+                capped = true;
+                break;
+            }
+        }
+    }
+
+    serde_wasm_bindgen::to_value(&json!({
+        "frame_count": count,
+        "first_ts": first_ts,
+        "last_ts": last_ts,
+        "capped": capped
+    }))
+    .map_err(|e| JsValue::from_str(&format!("serde failed: {:?}", e)))
+}

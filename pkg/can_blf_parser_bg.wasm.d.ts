@@ -12,6 +12,7 @@ export const blfsession_free_memory: (a: number) => void;
 export const blfsession_load_preview_smart: (a: number, b: number, c: number, d: number, e: number, f: bigint) => void;
 export const blfsession_export_csv_stream: (a: number, b: number, c: number, d: number, e: number, f: number) => void;
 export const blfsession_decimated_stream: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => void;
+export const count_frames: (a: number, b: number, c: number) => void;
 export const __wbindgen_export_0: (a: number) => void;
 export const __wbindgen_export_1: (a: number, b: number) => number;
 export const __wbindgen_export_2: (a: number, b: number, c: number, d: number) => number;

@@ -218,6 +218,27 @@ function addBorrowedObject(obj) {
     heap[--stack_pointer] = obj;
     return stack_pointer;
 }
+/**
+ * @param {Uint8Array} blf_bytes
+ * @returns {any}
+ */
+export function count_frames(blf_bytes) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        const ptr0 = passArray8ToWasm0(blf_bytes, wasm.__wbindgen_export_1);
+        const len0 = WASM_VECTOR_LEN;
+        wasm.count_frames(retptr, ptr0, len0);
+        var r0 = getDataViewMemory0().getInt32(retptr + 4 * 0, true);
+        var r1 = getDataViewMemory0().getInt32(retptr + 4 * 1, true);
+        var r2 = getDataViewMemory0().getInt32(retptr + 4 * 2, true);
+        if (r2) {
+            throw takeObject(r1);
+        }
+        return takeObject(r0);
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
 
 const BlfSessionFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }

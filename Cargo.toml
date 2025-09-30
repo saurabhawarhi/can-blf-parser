@@ -1,6 +1,6 @@
 [package]
 name = "can-blf-parser"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 description = "Ultra-fast BLF + DBC parser compiled to WebAssembly (universal, multi-DBC, multi-channel)."
 license = "MIT"

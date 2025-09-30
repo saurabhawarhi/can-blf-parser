@@ -72,7 +72,7 @@ checksum = "3995eaeebcdf32f91f980d360f78732ddc061097ab4e39991ae7a6ace9194677"
 
 [[package]]
 name = "can-blf-parser"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "ablf",
  "can-dbc",
