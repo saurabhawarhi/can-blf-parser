@@ -1,0 +1,20 @@
+{
+  "name": "can-blf-parser",
+  "type": "module",
+  "collaborators": [
+    "Saurabh Ravi <saurabh.awarhi@gmail.com>"
+  ],
+  "description": "Ultra-fast BLF + DBC parser compiled to WebAssembly (universal, multi-DBC, multi-channel).",
+  "version": "0.1.1",
+  "license": "MIT",
+  "files": [
+    "can_blf_parser_bg.wasm",
+    "can_blf_parser.js",
+    "can_blf_parser.d.ts"
+  ],
+  "main": "can_blf_parser.js",
+  "types": "can_blf_parser.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
